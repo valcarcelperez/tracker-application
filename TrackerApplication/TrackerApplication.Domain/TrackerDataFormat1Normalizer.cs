@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace TrackerApplication.Domain
 {
-    public static class TrackerDataNormalizer
+    public static class TrackerDataFormat1Normalizer
     {
         public static IEnumerable<NormalizedTrackerData.TrackerData> NormalizeTrackerData(TrackerDataFormat1.TrackerData data)
         {
@@ -64,19 +64,6 @@ namespace TrackerApplication.Domain
                 HumidityCount = aggregatedHumidty.CrumbCount,
                 AvgHumdity = aggregatedHumidty.AvgValue
             };
-        }
-
-        private static DateTime FindLastCrumbDtm(string sensorName, TrackerDataFormat1.Tracker tracker)
-        {
-            var temperatureSensor = tracker.Sensors.Where(sensor => sensor.Name == sensorName).FirstOrDefault();
-            if (temperatureSensor != null && temperatureSensor.Crumbs != null && temperatureSensor.Crumbs.Count > 0)
-            {
-                return temperatureSensor.Crumbs.Max(crumbs => crumbs.CreatedDtm);
-            }
-            else
-            {
-                return DateTime.MinValue;
-            }
         }
 
         private static (DateTime? FirstCrumbDtm, DateTime? LastCrumbDtm, int? CrumbCount, double? AvgValue) AggregateCrumbData(string sensorName, TrackerDataFormat1.Tracker tracker)

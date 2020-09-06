@@ -8,7 +8,7 @@ using System;
 namespace TrackerApplication.Domain.Tests
 {
     [TestClass]
-    public class TrackerDataNormalizerFormat1Test
+    public class TrackerDataFormat1NormalizerTest
     {
         private string _testFilesFolder;
         private TrackerDataFormat1.TrackerData _trackerData;
@@ -56,7 +56,7 @@ namespace TrackerApplication.Domain.Tests
         {
             var filename = Path.Combine(_testFilesFolder, "TrackerDataFoo1.json");
             _trackerData = DataLoader.Load<TrackerDataFormat1.TrackerData>(filename);
-            var actual = TrackerDataNormalizer.NormalizeTrackerData(_trackerData);
+            var actual = TrackerDataFormat1Normalizer.NormalizeTrackerData(_trackerData);
 
             actual.Should().BeEquivalentTo(_expectedTrackerDatas);
         }
