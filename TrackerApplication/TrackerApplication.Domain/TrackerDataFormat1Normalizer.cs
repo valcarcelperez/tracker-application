@@ -24,19 +24,17 @@ namespace TrackerApplication.Domain
 
         private static AggregatedCrumData AggregateCrumbData(string sensorName, Tracker tracker)
         {
-            var result = new AggregatedCrumData();
-
             if (tracker.Sensors == null || tracker.Sensors.Count == 0)
             {
-                return result;
+                return new AggregatedCrumData();
             }
 
             var sensor = tracker.Sensors.Where(s => s.Name == sensorName).FirstOrDefault();
             if (sensor != null && sensor.Crumbs != null && sensor.Crumbs.Count > 0)
             {
-                var aggregated = sensor.Crumbs
+                return sensor.Crumbs
                     .GroupBy(item => 1)
-                    .Select(crumbs => new
+                    .Select(crumbs => new AggregatedCrumData
                     {
                         FirstCrumbDtm = crumbs.Min(a => a.CreatedDtm),
                         LastCrumbDtm = crumbs.Max(a => a.CreatedDtm),
@@ -44,14 +42,9 @@ namespace TrackerApplication.Domain
                         AvgValue = Math.Round(crumbs.Average(a => a.Value), 2)
                     })
                     .First();
-
-                result.FirstCrumbDtm = aggregated.FirstCrumbDtm;
-                result.LastCrumbDtm = aggregated.LastCrumbDtm;
-                result.CrumbCount = aggregated.CrumbCount;
-                result.AvgValue = aggregated.AvgValue;
             }
 
-            return result;
+            return new AggregatedCrumData();
         }
     }
 }

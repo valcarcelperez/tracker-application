@@ -24,11 +24,9 @@ namespace TrackerApplication.Domain
 
         private static AggregatedCrumData AggregateCrumbData(string sensorName, Device device)
         {
-            var result = new AggregatedCrumData();
-
             if (device.SensorData == null || device.SensorData.Count == 0)
             {
-                return result;
+                return new AggregatedCrumData();
             }
 
             var sensor = device.SensorData
@@ -36,9 +34,9 @@ namespace TrackerApplication.Domain
 
             if (sensor.Count() > 0)
             {
-                var aggregated = sensor
+                return sensor
                 .GroupBy(item => 1)
-                .Select(data => new
+                .Select(data => new AggregatedCrumData
                 {
                     FirstCrumbDtm = data.Min(a => a.DateTime),
                     LastCrumbDtm = data.Max(a => a.DateTime),
@@ -46,14 +44,9 @@ namespace TrackerApplication.Domain
                     AvgValue = Math.Round(data.Average(a => a.Value), 2)
                 })
                 .First();
+            }
 
-                result.FirstCrumbDtm = aggregated.FirstCrumbDtm;
-                result.LastCrumbDtm = aggregated.LastCrumbDtm;
-                result.CrumbCount = aggregated.CrumbCount;
-                result.AvgValue = aggregated.AvgValue;
-            }            
-
-            return result;
+            return new AggregatedCrumData();
         }
     }
 }
