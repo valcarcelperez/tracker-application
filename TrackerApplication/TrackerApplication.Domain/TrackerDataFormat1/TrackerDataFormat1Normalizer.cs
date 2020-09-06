@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TrackerApplication.Domain.TrackerDataFormat1;
 
-namespace TrackerApplication.Domain
+namespace TrackerApplication.Domain.TrackerDataFormat1
 {
     public static class TrackerDataFormat1Normalizer
     {
