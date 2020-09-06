@@ -16,7 +16,7 @@ namespace TrackerApplication.Domain
         public string CompanyName { get; set; }
     }
 
-    public class Tracker
+    public class NormilizedTracker
     {
         public int? TrackerId { get; set; }
         public string TrackerName { get; set; }
@@ -26,7 +26,7 @@ namespace TrackerApplication.Domain
     {
         public static NormalizedTrackerData.TrackerData CreateTrakerData(
             Company company,
-            Tracker tracker,
+            NormilizedTracker tracker,
             AggregatedCrumData aggregatedTemperature,
             AggregatedCrumData aggregatedHumidty)
         {

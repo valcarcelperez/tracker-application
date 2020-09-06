@@ -8,62 +8,17 @@ namespace TrackerApplication.Domain
     {
         public static IEnumerable<NormalizedTrackerData.TrackerData> NormalizeTrackerData(TrackerDataFormat1.TrackerData data)
         {
-            var companyId = data.PartnerId.ToString();
-            var companyName = data.PartnerName;
-
-            return data.Trackers.Select(tracker => CreateTrakerData(companyId, companyName, tracker));
+            var company = new Company { CompanyId = data.PartnerId.ToString(), CompanyName = data.PartnerName };
+            return data.Trackers.Select(tracker => CreateTrakerData(company, tracker));
         }
 
-        private static NormalizedTrackerData.TrackerData CreateTrakerData(string companyId, string companyName, TrackerDataFormat1.Tracker tracker)
+        private static NormalizedTrackerData.TrackerData CreateTrakerData(Company company, TrackerDataFormat1.Tracker tracker)
         {
             var aggregatedTemperature = AggregateCrumbData("Temperature", tracker);
             var aggregatedHumidty = AggregateCrumbData("Humidty", tracker);
 
-            DateTime? firstCrumbDtm = null;
-            if (aggregatedTemperature.FirstCrumbDtm.HasValue || aggregatedHumidty.LastCrumbDtm.HasValue)
-            {
-                if (!aggregatedTemperature.FirstCrumbDtm.HasValue)
-                {
-                    aggregatedTemperature.FirstCrumbDtm = DateTime.MaxValue;
-                }
-
-                if (!aggregatedHumidty.LastCrumbDtm.HasValue)
-                {
-                    aggregatedHumidty.LastCrumbDtm = DateTime.MinValue;
-                }
-
-                firstCrumbDtm = aggregatedTemperature.FirstCrumbDtm <= aggregatedHumidty.LastCrumbDtm ? aggregatedTemperature.FirstCrumbDtm : aggregatedHumidty.FirstCrumbDtm;
-            }
-
-            DateTime? lastCrumbDtm = null;
-            if (aggregatedTemperature.LastCrumbDtm.HasValue || aggregatedHumidty.LastCrumbDtm.HasValue)
-            {
-                if (!aggregatedTemperature.LastCrumbDtm.HasValue)
-                {
-                    aggregatedTemperature.LastCrumbDtm = DateTime.MinValue;
-                }
-
-                if (!aggregatedHumidty.LastCrumbDtm.HasValue)
-                {
-                    aggregatedHumidty.LastCrumbDtm = DateTime.MaxValue;
-                }
-
-                lastCrumbDtm = aggregatedTemperature.LastCrumbDtm >= aggregatedHumidty.LastCrumbDtm ? aggregatedTemperature.LastCrumbDtm : aggregatedHumidty.LastCrumbDtm;
-            }
-
-            return new NormalizedTrackerData.TrackerData
-            {
-                CompanyId = companyId,
-                CompanyName = companyName,
-                TrackerId = tracker.Id,
-                TrackerName = tracker.Model,
-                FirstCrumbDtm = firstCrumbDtm,
-                LastCrumbDtm = lastCrumbDtm,
-                TempCount = aggregatedTemperature.CrumbCount,
-                AvgTemp = aggregatedTemperature.AvgValue,
-                HumidityCount = aggregatedHumidty.CrumbCount,
-                AvgHumdity = aggregatedHumidty.AvgValue
-            };
+            var normalizedTracker = new NormilizedTracker { TrackerId = tracker.Id, TrackerName = tracker.Model };
+            return TrackerDataNormalizer.CreateTrakerData(company, normalizedTracker, aggregatedTemperature, aggregatedHumidty);
         }
 
         private static AggregatedCrumData AggregateCrumbData(string sensorName, TrackerDataFormat1.Tracker tracker)
