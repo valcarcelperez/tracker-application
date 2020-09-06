@@ -11,24 +11,31 @@ namespace TrackerApplication.Domain.Tests
     {
         private string _testFilesFolder;
         private TrackerDataFormat1.TrackerData _trackerData;
-        private NormalizedTrackerData.TrackerData _expectedTrackerData;
+        private IEnumerable<NormalizedTrackerData.TrackerData> _expectedTrackerDatas;
 
         [TestInitialize]
         public void Initialize()
         {
             _testFilesFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             _testFilesFolder = Path.Combine(_testFilesFolder, "TestFiles");
-            
 
-            _expectedTrackerData = new NormalizedTrackerData.TrackerData
+            _expectedTrackerDatas = new List<NormalizedTrackerData.TrackerData>
             {
-                CompanyId = "1",
-                CompanyName = "Foo1",
-                Trackers = new List<NormalizedTrackerData.Tracker>()
+                new NormalizedTrackerData.TrackerData
+                {
+                    CompanyId = "1",
+                    CompanyName = "Foo1",
+                    TrackerId = 1,
+                    TrackerName = "ABC-100"
+                },
+                new NormalizedTrackerData.TrackerData
+                {
+                    CompanyId = "1",
+                    CompanyName = "Foo1",
+                    TrackerId = 2,
+                    TrackerName = "ABC-200"
+                }
             };
-
-            _expectedTrackerData.Trackers.Add(new NormalizedTrackerData.Tracker { TrackerId = 1, TrackerName = "ABC-100" });
-            _expectedTrackerData.Trackers.Add(new NormalizedTrackerData.Tracker { TrackerId = 2, TrackerName = "ABC-200" });
         }
 
         [TestMethod]
@@ -38,7 +45,7 @@ namespace TrackerApplication.Domain.Tests
             _trackerData = DataLoader.Load<TrackerDataFormat1.TrackerData>(filename);
             var actual = TrackerDataNormalizer.NormalizeTrackerData(_trackerData);
 
-            actual.Should().BeEquivalentTo(_expectedTrackerData);
+            actual.Should().BeEquivalentTo(_expectedTrackerDatas);
         }
     }
 }
