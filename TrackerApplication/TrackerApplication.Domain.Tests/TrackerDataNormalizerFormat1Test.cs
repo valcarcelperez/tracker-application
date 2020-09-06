@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using FluentAssertions;
 using System.Collections.Generic;
+using System;
 
 namespace TrackerApplication.Domain.Tests
 {
@@ -26,14 +27,18 @@ namespace TrackerApplication.Domain.Tests
                     CompanyId = "1",
                     CompanyName = "Foo1",
                     TrackerId = 1,
-                    TrackerName = "ABC-100"
+                    TrackerName = "ABC-100",
+                    FirstCrumbDtm = DateTime.Parse("2020-08-17 10:35:00"),
+                    LastCrumbDtm = DateTime.Parse("2020-08-17 10:45:00")
                 },
                 new NormalizedTrackerData.TrackerData
                 {
                     CompanyId = "1",
                     CompanyName = "Foo1",
                     TrackerId = 2,
-                    TrackerName = "ABC-200"
+                    TrackerName = "ABC-200",
+                    FirstCrumbDtm = DateTime.Parse("2020-08-18 10:35:00"),
+                    LastCrumbDtm = DateTime.Parse("2020-08-18 10:45:00")
                 }
             };
         }
