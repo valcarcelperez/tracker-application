@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TrackerApplication.Domain.TrackerDataFormat1;
 
 namespace TrackerApplication.Domain
 {
     public static class TrackerDataFormat1Normalizer
     {
-        public static IEnumerable<NormalizedTrackerData.TrackerData> NormalizeTrackerData(TrackerDataFormat1.TrackerData data)
+        public static IEnumerable<NormalizedTrackerData.TrackerData> NormalizeTrackerData(TrackerData data)
         {
             var company = new Company { CompanyId = data.PartnerId.ToString(), CompanyName = data.PartnerName };
             return data.Trackers.Select(tracker => CreateTrakerData(company, tracker));
         }
 
-        private static NormalizedTrackerData.TrackerData CreateTrakerData(Company company, TrackerDataFormat1.Tracker tracker)
+        private static NormalizedTrackerData.TrackerData CreateTrakerData(Company company, Tracker tracker)
         {
             var aggregatedTemperature = AggregateCrumbData("Temperature", tracker);
             var aggregatedHumidty = AggregateCrumbData("Humidty", tracker);
@@ -21,7 +22,7 @@ namespace TrackerApplication.Domain
             return TrackerDataNormalizer.CreateTrakerData(company, normalizedTracker, aggregatedTemperature, aggregatedHumidty);
         }
 
-        private static AggregatedCrumData AggregateCrumbData(string sensorName, TrackerDataFormat1.Tracker tracker)
+        private static AggregatedCrumData AggregateCrumbData(string sensorName, Tracker tracker)
         {
             var result = new AggregatedCrumData();
 

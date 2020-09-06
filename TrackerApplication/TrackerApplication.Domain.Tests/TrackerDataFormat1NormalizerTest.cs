@@ -4,6 +4,7 @@ using System.Reflection;
 using FluentAssertions;
 using System.Collections.Generic;
 using System;
+using TrackerApplication.Domain.TrackerDataFormat1;
 
 namespace TrackerApplication.Domain.Tests
 {
@@ -11,7 +12,7 @@ namespace TrackerApplication.Domain.Tests
     public class TrackerDataFormat1NormalizerTest
     {
         private string _testFilesFolder;
-        private TrackerDataFormat1.TrackerData _trackerData;
+        private TrackerData _trackerData;
         private IEnumerable<NormalizedTrackerData.TrackerData> _expectedTrackerDatas;
 
         [TestInitialize]
@@ -55,7 +56,7 @@ namespace TrackerApplication.Domain.Tests
         public void NormalizeTrackerDate()
         {
             var filename = Path.Combine(_testFilesFolder, "TrackerDataFoo1.json");
-            _trackerData = DataLoader.Load<TrackerDataFormat1.TrackerData>(filename);
+            _trackerData = DataLoader.Load<TrackerData>(filename);
             var actual = TrackerDataFormat1Normalizer.NormalizeTrackerData(_trackerData);
 
             actual.Should().BeEquivalentTo(_expectedTrackerDatas);
