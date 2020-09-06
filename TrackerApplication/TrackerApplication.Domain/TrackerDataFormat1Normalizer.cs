@@ -66,11 +66,13 @@ namespace TrackerApplication.Domain
             };
         }
 
-        private static (DateTime? FirstCrumbDtm, DateTime? LastCrumbDtm, int? CrumbCount, double? AvgValue) AggregateCrumbData(string sensorName, TrackerDataFormat1.Tracker tracker)
+        private static AggregatedCrumData AggregateCrumbData(string sensorName, TrackerDataFormat1.Tracker tracker)
         {
+            var result = new AggregatedCrumData();
+
             if (tracker.Sensors == null || tracker.Sensors.Count == 0)
             {
-                return default;
+                return result;
             }
 
             var sensor = tracker.Sensors.Where(s => s.Name == sensorName).FirstOrDefault();
@@ -86,12 +88,14 @@ namespace TrackerApplication.Domain
                         AvgValue = Math.Round(crumbs.Average(a => a.Value), 2)
                     })
                     .First();
-                return (aggregated.FirstCrumbDtm, aggregated.LastCrumbDtm, aggregated.CrumbCount, aggregated.AvgValue);
+
+                result.FirstCrumbDtm = aggregated.FirstCrumbDtm;
+                result.LastCrumbDtm = aggregated.LastCrumbDtm;
+                result.CrumbCount = aggregated.CrumbCount;
+                result.AvgValue = aggregated.AvgValue;
             }
-            else
-            {
-                return default;
-            }
+
+            return result;
         }
     }
 }
