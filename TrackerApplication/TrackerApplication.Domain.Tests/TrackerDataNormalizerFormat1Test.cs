@@ -29,7 +29,11 @@ namespace TrackerApplication.Domain.Tests
                     TrackerId = 1,
                     TrackerName = "ABC-100",
                     FirstCrumbDtm = DateTime.Parse("2020-08-17 10:35:00"),
-                    LastCrumbDtm = DateTime.Parse("2020-08-17 10:45:00")
+                    LastCrumbDtm = DateTime.Parse("2020-08-17 10:45:00"),
+                    TempCount = 3,
+                    AvgTemp = 23.15,
+                    HumidityCount = 3,
+                    AvgHumdity = 81.5
                 },
                 new NormalizedTrackerData.TrackerData
                 {
@@ -38,7 +42,11 @@ namespace TrackerApplication.Domain.Tests
                     TrackerId = 2,
                     TrackerName = "ABC-200",
                     FirstCrumbDtm = DateTime.Parse("2020-08-18 10:35:00"),
-                    LastCrumbDtm = DateTime.Parse("2020-08-18 10:45:00")
+                    LastCrumbDtm = DateTime.Parse("2020-08-18 10:45:00"),
+                    TempCount = 3,
+                    AvgTemp = 24.15,
+                    HumidityCount = 3,
+                    AvgHumdity = 82.5
                 }
             };
         }
