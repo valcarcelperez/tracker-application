@@ -73,10 +73,10 @@ namespace TrackerApplication.Domain
                 return default;
             }
 
-            var temperatureSensor = tracker.Sensors.Where(sensor => sensor.Name == sensorName).FirstOrDefault();
-            if (temperatureSensor != null && temperatureSensor.Crumbs != null && temperatureSensor.Crumbs.Count > 0)
+            var sensor = tracker.Sensors.Where(s => s.Name == sensorName).FirstOrDefault();
+            if (sensor != null && sensor.Crumbs != null && sensor.Crumbs.Count > 0)
             {
-                var aggregated = temperatureSensor.Crumbs
+                var aggregated = sensor.Crumbs
                     .GroupBy(item => 1)
                     .Select(crumbs => new
                     {
@@ -85,7 +85,7 @@ namespace TrackerApplication.Domain
                         CrumbCount = crumbs.Count(),
                         AvgValue = Math.Round(crumbs.Average(a => a.Value), 2)
                     })
-                    .First(); ;
+                    .First();
                 return (aggregated.FirstCrumbDtm, aggregated.LastCrumbDtm, aggregated.CrumbCount, aggregated.AvgValue);
             }
             else
