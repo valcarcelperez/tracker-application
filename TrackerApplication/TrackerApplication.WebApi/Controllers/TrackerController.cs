@@ -16,16 +16,28 @@ namespace TrackerApplication.WebApi.Controllers
             _trackerService = trackerService;
         }
 
-        [HttpGet]
-        public IActionResult Info()
-        {
-            return Ok("TrackerController");
-        }
-
         [HttpPost("retrieve")]
         public IActionResult Retrieve()
         {
             return Execute(() => _trackerService.RetrieveAll());
+        }
+
+        [HttpPost("saveTrackerData1")]
+        public IActionResult SaveTrackerDataWithFormat1([FromBody] Contracts.Models.TrackerDataFormat1.TrackerData trackerData1)
+        {
+            return Execute(() => _trackerService.Add(trackerData1));
+        }
+
+        [HttpPost("saveTrackerData2")]
+        public IActionResult SaveTrackerDataWithFormat2([FromBody] Contracts.Models.TrackerDataFormat2.TrackerData trackerData2)
+        {
+            return Execute(() => _trackerService.Add(trackerData2));
+        }
+
+        [HttpPost("saveTrackerData3")]
+        public IActionResult SaveTrackerDataWithFormat3([FromBody] Contracts.Models.TrackerDataFormat3.TrackerData trackerData3)
+        {
+            return Execute(() => _trackerService.Add(trackerData3));
         }
     }
 }
