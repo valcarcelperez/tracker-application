@@ -251,7 +251,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("I save format 1 tracker data from file \'TrackerDataFoo1.json\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 22
- testRunner.Given("I save format 2 tracker data from file \'TrackerDataFoo2.json\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("I save format 2 tracker data from file \'TrackerDataFoo2.json\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 23
  testRunner.When("I send a POST request to api/tracker/retrieve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

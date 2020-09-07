@@ -81,19 +81,5 @@ namespace TrackerApplication.WebApi.Tests
 
             Assert.AreEqual(ServiceResponseType.Succeed, response.Type);
         }
-
-        [Given(@"content is loaded from file '(.*)'")]
-        public void SaveTrackDataFromFile(string filename)
-        {
-            var fullFilename = Path.Combine(_testFilesFolder, filename);
-            
-            if (!File.Exists(fullFilename))
-            {
-                Assert.Fail($"File '{filename}' not found");
-            }
-
-            var content = File.ReadAllText(fullFilename);
-            SetContent(content);            
-        }
     }
 }

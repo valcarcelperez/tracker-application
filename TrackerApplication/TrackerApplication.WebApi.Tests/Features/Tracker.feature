@@ -19,7 +19,7 @@ Scenario: Given that data with format1 is saved to the service Retrieve should r
 
 Scenario: Given that data with format1 and format2 are is saved to the service Retrieve should return four items
 	Given I save format 1 tracker data from file 'TrackerDataFoo1.json'
-	Given I save format 2 tracker data from file 'TrackerDataFoo2.json'
+	And I save format 2 tracker data from file 'TrackerDataFoo2.json'
 	When I send a POST request to api/tracker/retrieve
 	Then StatusCode should be 200
 	And property type should be 'Succeed'
