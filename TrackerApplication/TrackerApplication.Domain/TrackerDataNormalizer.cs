@@ -24,7 +24,7 @@ namespace TrackerApplication.Domain
 
     public static class TrackerDataNormalizer
     {
-        public static NormalizedTrackerData.TrackerData CreateTrakerData(
+        public static Contracts.Models.TrackerData CreateTrakerData(
             Company company,
             NormilizedTracker tracker,
             AggregatedCrumData aggregatedTemperature,
@@ -33,7 +33,7 @@ namespace TrackerApplication.Domain
             DateTime? firstCrumbDtm = FindfirstCrumbDtm(aggregatedTemperature, aggregatedHumidty);
             DateTime? lastCrumbDtm = FindLastCrumbDtm(aggregatedTemperature, aggregatedHumidty);
 
-            return new NormalizedTrackerData.TrackerData
+            return new Contracts.Models.TrackerData
             {
                 CompanyId = company.CompanyId,
                 CompanyName = company.CompanyName,

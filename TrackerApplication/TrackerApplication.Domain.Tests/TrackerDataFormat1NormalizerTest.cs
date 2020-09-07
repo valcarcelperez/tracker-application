@@ -13,7 +13,7 @@ namespace TrackerApplication.Domain.Tests
     {
         private string _testFilesFolder;
         private TrackerData _trackerData;
-        private IEnumerable<NormalizedTrackerData.TrackerData> _expectedTrackerDatas;
+        private IEnumerable<Contracts.Models.TrackerData> _expectedTrackerDatas;
 
         [TestInitialize]
         public void Initialize()
@@ -21,9 +21,9 @@ namespace TrackerApplication.Domain.Tests
             _testFilesFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             _testFilesFolder = Path.Combine(_testFilesFolder, "TestFiles");
 
-            _expectedTrackerDatas = new List<NormalizedTrackerData.TrackerData>
+            _expectedTrackerDatas = new List<Contracts.Models.TrackerData>
             {
-                new NormalizedTrackerData.TrackerData
+                new Contracts.Models.TrackerData
                 {
                     CompanyId = "1",
                     CompanyName = "Foo1",
@@ -36,7 +36,7 @@ namespace TrackerApplication.Domain.Tests
                     HumidityCount = 3,
                     AvgHumdity = 81.5
                 },
-                new NormalizedTrackerData.TrackerData
+                new Contracts.Models.TrackerData
                 {
                     CompanyId = "1",
                     CompanyName = "Foo1",

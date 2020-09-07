@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>5e9f227b-b9dd-446d-bbcf-f3d61dea3bd3</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TrackerApplication.Contracts\TrackerApplication.Contracts.csproj" />
+    <ProjectReference Include="..\TrackerApplication.Services\TrackerApplication.Services.csproj" />
+  </ItemGroup>
+
+
+</Project>

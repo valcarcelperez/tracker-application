@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TrackerApplication.Domain.NormalizedTrackerData
+namespace TrackerApplication.Contracts.Models
 {
     public class TrackerData
     {

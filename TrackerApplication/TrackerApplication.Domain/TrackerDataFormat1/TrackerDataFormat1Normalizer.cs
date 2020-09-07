@@ -6,13 +6,13 @@ namespace TrackerApplication.Domain.TrackerDataFormat1
 {
     public static class TrackerDataFormat1Normalizer
     {
-        public static IEnumerable<NormalizedTrackerData.TrackerData> NormalizeTrackerData(TrackerData data)
+        public static IEnumerable<Contracts.Models.TrackerData> NormalizeTrackerData(TrackerData data)
         {
             var company = new Company { CompanyId = data.PartnerId.ToString(), CompanyName = data.PartnerName };
             return data.Trackers.Select(tracker => CreateTrakerData(company, tracker));
         }
 
-        private static NormalizedTrackerData.TrackerData CreateTrakerData(Company company, Tracker tracker)
+        private static Contracts.Models.TrackerData CreateTrakerData(Company company, Tracker tracker)
         {
             var aggregatedTemperature = AggregateCrumbData("Temperature", tracker);
             var aggregatedHumidty = AggregateCrumbData("Humidty", tracker);
