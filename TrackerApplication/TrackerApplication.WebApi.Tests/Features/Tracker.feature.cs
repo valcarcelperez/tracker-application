@@ -134,6 +134,195 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Given that data with format1 is saved to the service Retrieve should return two i" +
+            "tems")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Tracker")]
+        public virtual void GivenThatDataWithFormat1IsSavedToTheServiceRetrieveShouldReturnTwoItems()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Given that data with format1 is saved to the service Retrieve should return two i" +
+                    "tems", null, tagsOfScenario, argumentsOfScenario);
+#line 10
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 11
+ testRunner.Given("I save format 1 tracker data from file \'TrackerDataFoo1.json\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 12
+ testRunner.When("I send a POST request to api/tracker/retrieve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 13
+ testRunner.Then("StatusCode should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 14
+ testRunner.And("property type should be \'Succeed\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "companyId:key",
+                            "companyName",
+                            "trackerId:key",
+                            "trackerName",
+                            "firstCrumbDtm:DateTime",
+                            "lastCrumbDtm:DateTime",
+                            "tempCount:Number",
+                            "avgTemp:Number",
+                            "humidityCount:Number",
+                            "avgHumdity:Number"});
+                table1.AddRow(new string[] {
+                            "1",
+                            "Foo1",
+                            "1",
+                            "ABC-100",
+                            "2020-08-17T10:35:00",
+                            "2020-08-17T10:45:00",
+                            "3",
+                            "23.15",
+                            "3",
+                            "81.5"});
+                table1.AddRow(new string[] {
+                            "1",
+                            "Foo1",
+                            "2",
+                            "ABC-200",
+                            "2020-08-18T10:35:00",
+                            "2020-08-18T10:45:00",
+                            "3",
+                            "24.15",
+                            "3",
+                            "82.5"});
+#line 15
+ testRunner.And("property data should be the complex-element array", ((string)(null)), table1, "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Given that data with format1 and format2 are is saved to the service Retrieve sho" +
+            "uld return four items")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Tracker")]
+        public virtual void GivenThatDataWithFormat1AndFormat2AreIsSavedToTheServiceRetrieveShouldReturnFourItems()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Given that data with format1 and format2 are is saved to the service Retrieve sho" +
+                    "uld return four items", null, tagsOfScenario, argumentsOfScenario);
+#line 20
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 21
+ testRunner.Given("I save format 1 tracker data from file \'TrackerDataFoo1.json\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 22
+ testRunner.Given("I save format 2 tracker data from file \'TrackerDataFoo2.json\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 23
+ testRunner.When("I send a POST request to api/tracker/retrieve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 24
+ testRunner.Then("StatusCode should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 25
+ testRunner.And("property type should be \'Succeed\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "companyId:key",
+                            "companyName",
+                            "trackerId:key",
+                            "trackerName",
+                            "firstCrumbDtm:DateTime",
+                            "lastCrumbDtm:DateTime",
+                            "tempCount:Number",
+                            "avgTemp:Number",
+                            "humidityCount:Number",
+                            "avgHumdity:Number"});
+                table2.AddRow(new string[] {
+                            "1",
+                            "Foo1",
+                            "1",
+                            "ABC-100",
+                            "2020-08-17T10:35:00",
+                            "2020-08-17T10:45:00",
+                            "3",
+                            "23.15",
+                            "3",
+                            "81.5"});
+                table2.AddRow(new string[] {
+                            "1",
+                            "Foo1",
+                            "2",
+                            "ABC-200",
+                            "2020-08-18T10:35:00",
+                            "2020-08-18T10:45:00",
+                            "3",
+                            "24.15",
+                            "3",
+                            "82.5"});
+                table2.AddRow(new string[] {
+                            "2",
+                            "Foo2",
+                            "1",
+                            "XYZ-100",
+                            "2020-08-18T10:35:00",
+                            "2020-08-18T10:45:00",
+                            "3",
+                            "33.15",
+                            "3",
+                            "91.5"});
+                table2.AddRow(new string[] {
+                            "2",
+                            "Foo2",
+                            "2",
+                            "XYZ-200",
+                            "2020-08-19T10:35:00",
+                            "2020-08-19T10:45:00",
+                            "3",
+                            "43.15",
+                            "3",
+                            "92.5"});
+#line 26
+ testRunner.And("property data should be the complex-element array", ((string)(null)), table2, "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
