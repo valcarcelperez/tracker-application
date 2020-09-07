@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TrackerApplication.Domain.TrackerDataFormat2;
 
-namespace TrackerApplication.Domain.TrackerDataFormat3
+namespace TrackerApplication.Domain
 {
-    public static class TrackerDataFormat3Normalizer
+    public static class TrackerDataFormat2Normalizer
     {
         public static IEnumerable<Contracts.Models.TrackerData> NormalizeTrackerData(TrackerData data)
         {
@@ -17,18 +18,18 @@ namespace TrackerApplication.Domain.TrackerDataFormat3
             var aggregatedTemperature = AggregateCrumbData("TEMP", device);
             var aggregatedHumidty = AggregateCrumbData("HUM", device);
 
-            var normalizedTracker = new NormilizedTracker { TrackerId = device.ID, TrackerName = device.DeviceName };
+            var normalizedTracker = new NormilizedTracker { TrackerId = device.DeviceID, TrackerName = device.Name };
             return TrackerDataNormalizer.CreateTrakerData(company, normalizedTracker, aggregatedTemperature, aggregatedHumidty);
         }
 
         private static AggregatedCrumData AggregateCrumbData(string sensorName, Device device)
         {
-            if (device.Data == null || device.Data.Count == 0)
+            if (device.SensorData == null || device.SensorData.Count == 0)
             {
                 return new AggregatedCrumData();
             }
 
-            var sensor = device.Data
+            var sensor = device.SensorData
                 .Where(data => data.SensorType == sensorName);
 
             if (sensor.Count() > 0)
