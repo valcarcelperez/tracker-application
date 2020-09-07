@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace TrackerApplication.Contracts.Models.TrackerDataFormat2
 {
-    public class Device
+    public class Device2
     {
         public int DeviceID { get; set; }
      
@@ -13,6 +13,6 @@ namespace TrackerApplication.Contracts.Models.TrackerDataFormat2
         [JsonConverter(typeof(MMDashDDDashYYYYDateTimeConverter))]
         public DateTime StartDateTime { get; set; }
     
-        public List<SensorData> SensorData { get; set; }
+        public List<SensorData2> SensorData { get; set; }
     }
 }

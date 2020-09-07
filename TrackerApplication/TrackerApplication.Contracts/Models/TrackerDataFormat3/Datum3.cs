@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace TrackerApplication.Contracts.Models.TrackerDataFormat2
+namespace TrackerApplication.Contracts.Models.TrackerDataFormat3
 {
-    public class SensorData
+    public class Datum3
     {
         public string SensorType { get; set; }
 

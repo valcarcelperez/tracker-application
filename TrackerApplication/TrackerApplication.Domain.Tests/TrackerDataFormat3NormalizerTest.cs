@@ -12,7 +12,7 @@ namespace TrackerApplication.Domain.Tests
     public class TrackerDataFormat3NormalizerTest
     {
         private string _testFilesFolder;
-        private TrackerData _trackerData;
+        private TrackerData3 _trackerData;
         private IEnumerable<Contracts.Models.TrackerData> _expectedTrackerDatas;
 
         [TestInitialize]
@@ -56,7 +56,7 @@ namespace TrackerApplication.Domain.Tests
         public void NormalizeTrackerDate()
         {
             var filename = Path.Combine(_testFilesFolder, "TrackerDataFoo3.json");
-            _trackerData = DataLoader.Load<TrackerData>(filename);
+            _trackerData = DataLoader.Load<TrackerData3>(filename);
             var actual = TrackerDataFormat3Normalizer.NormalizeTrackerData(_trackerData);
 
             actual.Should().BeEquivalentTo(_expectedTrackerDatas);

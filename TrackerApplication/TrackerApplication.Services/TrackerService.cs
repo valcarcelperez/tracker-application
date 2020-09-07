@@ -14,21 +14,21 @@ namespace TrackerApplication.Services
             _trakerRepository = trakerRepository;
         }
 
-        public ServiceResponse Add(Contracts.Models.TrackerDataFormat1.TrackerData trackerData1)
+        public ServiceResponse Add(Contracts.Models.TrackerDataFormat1.TrackerData1 trackerData1)
         {
             var normalizedTrackerData = TrackerDataFormat1Normalizer.NormalizeTrackerData(trackerData1);
             _trakerRepository.Add(normalizedTrackerData);
             return ServiceResponse.CreateSucceed();
         }
 
-        public ServiceResponse Add(Contracts.Models.TrackerDataFormat2.TrackerData trackerData2)
+        public ServiceResponse Add(Contracts.Models.TrackerDataFormat2.TrackerData2 trackerData2)
         {
             var normalizedTrackerData = TrackerDataFormat2Normalizer.NormalizeTrackerData(trackerData2);
             _trakerRepository.Add(normalizedTrackerData);
             return ServiceResponse.CreateSucceed();
         }
 
-        public ServiceResponse Add(Contracts.Models.TrackerDataFormat3.TrackerData trackerData3)
+        public ServiceResponse Add(Contracts.Models.TrackerDataFormat3.TrackerData3 trackerData3)
         {
             var normalizedTrackerData = TrackerDataFormat3Normalizer.NormalizeTrackerData(trackerData3);
             _trakerRepository.Add(normalizedTrackerData);

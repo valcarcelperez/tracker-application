@@ -7,13 +7,13 @@ namespace TrackerApplication.Domain
 {
     public static class TrackerDataFormat1Normalizer
     {
-        public static IEnumerable<Contracts.Models.TrackerData> NormalizeTrackerData(TrackerData data)
+        public static IEnumerable<Contracts.Models.TrackerData> NormalizeTrackerData(TrackerData1 data)
         {
             var company = new Company { CompanyId = data.PartnerId.ToString(), CompanyName = data.PartnerName };
             return data.Trackers.Select(tracker => CreateTrakerData(company, tracker));
         }
 
-        private static Contracts.Models.TrackerData CreateTrakerData(Company company, Tracker tracker)
+        private static Contracts.Models.TrackerData CreateTrakerData(Company company, Tracker1 tracker)
         {
             var aggregatedTemperature = AggregateCrumbData("Temperature", tracker);
             var aggregatedHumidty = AggregateCrumbData("Humidty", tracker);
@@ -22,7 +22,7 @@ namespace TrackerApplication.Domain
             return TrackerDataNormalizer.CreateTrakerData(company, normalizedTracker, aggregatedTemperature, aggregatedHumidty);
         }
 
-        private static AggregatedCrumData AggregateCrumbData(string sensorName, Tracker tracker)
+        private static AggregatedCrumData AggregateCrumbData(string sensorName, Tracker1 tracker)
         {
             if (tracker.Sensors == null || tracker.Sensors.Count == 0)
             {
