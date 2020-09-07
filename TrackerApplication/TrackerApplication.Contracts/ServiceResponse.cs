@@ -1,4 +1,6 @@
-﻿namespace TrackerApplication.Contracts
+﻿using System.Text.Json.Serialization;
+
+namespace TrackerApplication.Contracts
 {
     public enum ServiceResponseType
     {
@@ -9,6 +11,7 @@
 
     public class ServiceResponse
     {
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public ServiceResponseType Type { get; set; }
         public string Message { get; set; }
 

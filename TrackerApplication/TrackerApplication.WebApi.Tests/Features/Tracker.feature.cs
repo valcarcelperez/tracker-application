@@ -125,6 +125,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
  testRunner.Then("StatusCode should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 7
+ testRunner.And("property type should be \'Succeed\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 8
+ testRunner.And("property data should be an empty array", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
