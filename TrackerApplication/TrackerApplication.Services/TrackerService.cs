@@ -6,6 +6,11 @@ namespace TrackerApplication.Services
 {
     public class TrackerService : ITrackerService
     {
+        public ServiceResponse Add<TTrackerData>(TTrackerData trackerData)
+        {
+            throw new NotImplementedException();
+        }
+
         public ServiceResponse<TrackerData[]> RetrieveAll()
         {
             var data = new TrackerData[]

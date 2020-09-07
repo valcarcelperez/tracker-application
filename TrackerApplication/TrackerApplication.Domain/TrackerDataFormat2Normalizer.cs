@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TrackerApplication.Domain.TrackerDataFormat2;
+using TrackerApplication.Contracts.Models.TrackerDataFormat2;
 
 namespace TrackerApplication.Domain
 {

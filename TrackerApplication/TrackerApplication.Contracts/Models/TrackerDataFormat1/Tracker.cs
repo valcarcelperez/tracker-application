@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace TrackerApplication.Domain.TrackerDataFormat1
+namespace TrackerApplication.Contracts.Models.TrackerDataFormat1
 {
     public class Tracker
     {

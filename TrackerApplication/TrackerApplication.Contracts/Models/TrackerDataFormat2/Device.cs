@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace TrackerApplication.Domain.TrackerDataFormat3
+namespace TrackerApplication.Contracts.Models.TrackerDataFormat2
 {
     public class Device
     {
-        public int ID { get; set; }
+        public int DeviceID { get; set; }
+     
+        public string Name { get; set; }
         
-        public string DeviceName { get; set; }
-
         [JsonConverter(typeof(MMDashDDDashYYYYDateTimeConverter))]
         public DateTime StartDateTime { get; set; }
-        
-        public List<Datum> Data { get; set; }
+    
+        public List<SensorData> SensorData { get; set; }
     }
 }

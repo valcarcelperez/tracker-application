@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TrackerApplication.Domain.TrackerDataFormat1
+namespace TrackerApplication.Contracts.Models.TrackerDataFormat1
 {
     public class TrackerData
     {

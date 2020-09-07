@@ -4,7 +4,7 @@ using System.Reflection;
 using FluentAssertions;
 using System.Collections.Generic;
 using System;
-using TrackerApplication.Domain.TrackerDataFormat1;
+using TrackerApplication.Contracts.Models.TrackerDataFormat1;
 
 namespace TrackerApplication.Domain.Tests
 {
