@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using TrackerApplication.Contracts;
+using TrackerApplication.Repositories;
 using TrackerApplication.Services;
 
 namespace TrackerApplication.WebApi
@@ -24,6 +25,7 @@ namespace TrackerApplication.WebApi
             services.AddControllers();
 
             services.AddTransient<ITrackerService, TrackerService>();
+            services.AddSingleton<ITrakerRepository>(new TrakerRepository());
 
             services.AddMvc();
 

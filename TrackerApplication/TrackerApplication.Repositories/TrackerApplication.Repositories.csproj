@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TrackerApplication.Contracts\TrackerApplication.Contracts.csproj" />
-    <ProjectReference Include="..\TrackerApplication.Domain\TrackerApplication.Domain.csproj" />
   </ItemGroup>
 
 </Project>

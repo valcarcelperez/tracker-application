@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackerApplication.Domain", "TrackerApplication.Domain\TrackerApplication.Domain.csproj", "{1B2B5A85-1BA3-41D0-B162-6FBEA677C60A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrackerApplication.Domain", "TrackerApplication.Domain\TrackerApplication.Domain.csproj", "{1B2B5A85-1BA3-41D0-B162-6FBEA677C60A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackerApplication.Domain.Tests", "TrackerApplication.Domain.Tests\TrackerApplication.Domain.Tests.csproj", "{4B664B23-8E1A-47DA-9D72-83B81EFDBFB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrackerApplication.Domain.Tests", "TrackerApplication.Domain.Tests\TrackerApplication.Domain.Tests.csproj", "{4B664B23-8E1A-47DA-9D72-83B81EFDBFB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackerApplication.WebApi", "TrackerApplication.WebApi\TrackerApplication.WebApi.csproj", "{C5AA8112-AB41-4AE3-9820-062978BDEDAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrackerApplication.WebApi", "TrackerApplication.WebApi\TrackerApplication.WebApi.csproj", "{C5AA8112-AB41-4AE3-9820-062978BDEDAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackerApplication.Services", "TrackerApplication.Services\TrackerApplication.Services.csproj", "{CB7F328E-159F-4A5C-98D2-570AC58A8D74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrackerApplication.Services", "TrackerApplication.Services\TrackerApplication.Services.csproj", "{CB7F328E-159F-4A5C-98D2-570AC58A8D74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackerApplication.Contracts", "TrackerApplication.Contracts\TrackerApplication.Contracts.csproj", "{12FFBCF3-8C75-47A9-B645-43D4D0BBFEF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrackerApplication.Contracts", "TrackerApplication.Contracts\TrackerApplication.Contracts.csproj", "{12FFBCF3-8C75-47A9-B645-43D4D0BBFEF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackerApplication.Repositories", "TrackerApplication.Repositories\TrackerApplication.Repositories.csproj", "{8E608A3D-C2CA-426B-93FD-327F944AC0CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{12FFBCF3-8C75-47A9-B645-43D4D0BBFEF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12FFBCF3-8C75-47A9-B645-43D4D0BBFEF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12FFBCF3-8C75-47A9-B645-43D4D0BBFEF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E608A3D-C2CA-426B-93FD-327F944AC0CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E608A3D-C2CA-426B-93FD-327F944AC0CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E608A3D-C2CA-426B-93FD-327F944AC0CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E608A3D-C2CA-426B-93FD-327F944AC0CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

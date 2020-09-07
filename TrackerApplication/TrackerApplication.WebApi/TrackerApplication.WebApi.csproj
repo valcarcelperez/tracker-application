@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TrackerApplication.Contracts\TrackerApplication.Contracts.csproj" />
+    <ProjectReference Include="..\TrackerApplication.Repositories\TrackerApplication.Repositories.csproj" />
     <ProjectReference Include="..\TrackerApplication.Services\TrackerApplication.Services.csproj" />
   </ItemGroup>
 
