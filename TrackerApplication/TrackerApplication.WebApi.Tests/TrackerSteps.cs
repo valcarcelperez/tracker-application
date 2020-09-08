@@ -16,7 +16,7 @@ namespace TrackerApplication.WebApi.Tests
     [Scope(Feature = "Tracker")]
     public class TrackerSteps : WebApiSpecs
     {
-        public const string BaseUrl = "http://localhost:5000";
+        public const string BaseUrl = "http://localhost:5003";
 
         private TrackerApiClient _trackerApiClient;
 
