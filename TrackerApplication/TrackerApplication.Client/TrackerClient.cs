@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,7 +16,6 @@ namespace TrackerApplication.Client
         public TimeSpan RequestInterval { get; set; }
         public string BaseAddress { get; set; }
         public TimeSpan Timeout { get; set; }
-
     }
 
     public class TrackerClient : IDisposable
@@ -26,9 +26,16 @@ namespace TrackerApplication.Client
         private readonly object _lockObj = new object();
         private readonly TrackerApiClient _trackerApiClient;
         private bool disposed = false;
+        private bool sendingRequest = false;
+        private JsonSerializerOptions _jsonSerializerOptions;
 
         public TrackerClient(ITrackerClientLogger logger, TrackerClientConfig config)
         {
+            _jsonSerializerOptions = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+
             _logger = logger;
             _config = config;
 
@@ -112,7 +119,37 @@ namespace TrackerApplication.Client
 
         private void TimerCallback(object state)
         {
-            _logger.Info($"TimerCallback");
+            lock (_lockObj)
+            {
+                if (!sendingRequest)
+                {
+                    sendingRequest = true;
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            _logger.Info("Sending request");
+
+            try
+            {
+                var response = _trackerApiClient.RetrieveAllAsync().Result;
+                var json = JsonSerializer.Serialize(response, _jsonSerializerOptions);
+                _logger.Info($"Response:{Environment.NewLine}{json}");
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex.ToString());
+            }            
+            finally
+            {
+                lock (_lockObj)
+                {
+                    sendingRequest = false;
+                }
+            }
         }
     }
 }

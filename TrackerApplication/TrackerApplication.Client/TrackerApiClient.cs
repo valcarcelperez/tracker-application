@@ -58,13 +58,13 @@ namespace TrackerApplication.Client
             }
         }
 
-        public async Task<ServiceResponse<TrackerData>> RetrieveAllAsync()
+        public async Task<ServiceResponse<TrackerData[]>> RetrieveAllAsync()
         {
             var request = new HttpRequestMessage(HttpMethod.Post, "api/tracker/retrieve");            
             var response = await _client.SendAsync(request);            
             response.EnsureSuccessStatusCode();            
             var content = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<ServiceResponse<TrackerData>>(content, _jsonSerializerOptions);
+            return JsonSerializer.Deserialize<ServiceResponse<TrackerData[]>>(content, _jsonSerializerOptions);
         }
 
         public Task<ServiceResponse> SaveTrackerData1Async(Contracts.Models.TrackerDataFormat1.TrackerData1 trackerData1)

@@ -72,12 +72,16 @@
             // 
             this.textBoxLogs.BackColor = System.Drawing.Color.Black;
             this.textBoxLogs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxLogs.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxLogs.ForeColor = System.Drawing.Color.Yellow;
             this.textBoxLogs.Location = new System.Drawing.Point(3, 3);
             this.textBoxLogs.Multiline = true;
             this.textBoxLogs.Name = "textBoxLogs";
+            this.textBoxLogs.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxLogs.Size = new System.Drawing.Size(786, 416);
             this.textBoxLogs.TabIndex = 0;
+            this.textBoxLogs.WordWrap = false;
+            this.textBoxLogs.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxLogs_KeyDown);
             // 
             // MainForm
             // 
