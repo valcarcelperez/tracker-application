@@ -2,12 +2,14 @@
 using System.Drawing;
 using System.Windows.Forms;
 using TrackerApplication.Client;
+using TrackerApplication.Contracts.Models;
 
 namespace TrackerApplication.WinForm
 {
     public partial class MainForm : Form
     {
-        private TrackerClient _trackerClient;
+        private readonly TrackerClient _trackerClient;
+        private readonly TextBoxTrackerClientLogger _textBoxTrackerClientLogger;
 
         public MainForm()
         {
@@ -20,8 +22,26 @@ namespace TrackerApplication.WinForm
                 Timeout = TimeSpan.FromSeconds(10)
             };
 
-            var logger = new TextBoxTrackerClientLogger(textBoxLogs);
-            _trackerClient = new TrackerClient(logger, trackerClientConfig);
+            _textBoxTrackerClientLogger = new TextBoxTrackerClientLogger(textBoxLogs);
+            _trackerClient = new TrackerClient(_textBoxTrackerClientLogger, trackerClientConfig);
+            _trackerClient.TrackerDataReceived += TrackerDataReceived;
+        }
+
+        private void TrackerDataReceived(object sender, TrackerDataReceivedEvenArgs e)
+        {
+            if (dataGridView.InvokeRequired)
+            {
+                dataGridView.Invoke(new Action<TrackerData[]>(SetDataGridView), new object[] { e.Data });
+            }
+            else
+            {
+                SetDataGridView(e.Data);
+            }
+        }
+
+        private void SetDataGridView(TrackerData[] data)
+        {
+            dataGridView.DataSource = data;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -64,6 +84,22 @@ namespace TrackerApplication.WinForm
             if (ModifierKeys.HasFlag(Keys.Control) && e.KeyCode == Keys.OemMinus)
             {
                 DecreaseFont();
+            }
+        }
+
+        private void buttonPause_Click(object sender, EventArgs e)
+        {
+            if (buttonPause.Tag.ToString() == "1")
+            {
+                _trackerClient.Stop();
+                buttonPause.Tag = 0;
+                buttonPause.Text = "Continue";
+            }
+            else
+            {
+                _trackerClient.Start();
+                buttonPause.Tag = 1;
+                buttonPause.Text = "Pause";
             }
         }
     }

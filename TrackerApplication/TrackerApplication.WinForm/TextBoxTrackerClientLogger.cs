@@ -23,6 +23,11 @@ namespace TrackerApplication.WinForm
             WriteLog($"INFO: {message}");
         }
 
+        public void Warning(string message)
+        {
+            WriteLog($"WARN: {message}");
+        }
+
         private void WriteLog(string message)
         {
             if (_textBox.InvokeRequired)

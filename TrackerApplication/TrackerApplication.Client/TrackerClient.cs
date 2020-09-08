@@ -2,6 +2,8 @@
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using TrackerApplication.Contracts;
+using TrackerApplication.Contracts.Models;
 
 namespace TrackerApplication.Client
 {
@@ -9,6 +11,7 @@ namespace TrackerApplication.Client
     {
         void Info(string message);
         void Error(string message);
+        void Warning(string message);
     }
 
     public class TrackerClientConfig
@@ -16,6 +19,11 @@ namespace TrackerApplication.Client
         public TimeSpan RequestInterval { get; set; }
         public string BaseAddress { get; set; }
         public TimeSpan Timeout { get; set; }
+    }
+
+    public class TrackerDataReceivedEvenArgs : EventArgs
+    {
+        public TrackerData[] Data { get; set; }
     }
 
     public class TrackerClient : IDisposable
@@ -28,6 +36,8 @@ namespace TrackerApplication.Client
         private bool disposed = false;
         private bool sendingRequest = false;
         private JsonSerializerOptions _jsonSerializerOptions;
+
+        public event EventHandler<TrackerDataReceivedEvenArgs> TrackerDataReceived;
 
         public TrackerClient(ITrackerClientLogger logger, TrackerClientConfig config)
         {
@@ -64,6 +74,11 @@ namespace TrackerApplication.Client
 
                 disposed = true;
             }
+        }
+
+        protected void OnTrackerDataReceived(TrackerDataReceivedEvenArgs e)
+        {
+            TrackerDataReceived?.Invoke(this, e);
         }
 
         private TrackerApiClient CreateTrackerApiClient()
@@ -137,7 +152,16 @@ namespace TrackerApplication.Client
             {
                 var response = _trackerApiClient.RetrieveAllAsync().Result;
                 var json = JsonSerializer.Serialize(response, _jsonSerializerOptions);
-                _logger.Info($"Response:{Environment.NewLine}{json}");
+                
+                if (response.Type == ServiceResponseType.Succeed)
+                {
+                    _logger.Info($"Response:{Environment.NewLine}{json}");
+                    OnTrackerDataReceived(new TrackerDataReceivedEvenArgs { Data = response.Data });
+                }
+                else
+                {
+                    _logger.Warning($"Response:{Environment.NewLine}{json}");
+                }
             }
             catch (Exception ex)
             {
