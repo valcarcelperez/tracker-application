@@ -30,19 +30,21 @@ namespace TrackerApplication.WinForm
 
         private void WriteLog(string message)
         {
+            var text = $"{Environment.NewLine}{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} - {message}";
+            SafeAppendTextBox(text);
+        }
+
+        private void SafeAppendTextBox(string text)
+        {
             if (_textBox.InvokeRequired)
             {
-                _textBox.Invoke(new Action<string>(AppendTextBox), new object[] { message });
+                var action = new Action(() => { _textBox.AppendText(text); });
+                _textBox.Invoke(action);
             }
             else
             {
-                AppendTextBox(message);
-            }           
-        }
-
-        private void AppendTextBox(string message)
-        {
-            _textBox.AppendText($"{Environment.NewLine}{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} - {message}");
+                _textBox.AppendText(text);
+            }
         }
     }
 }

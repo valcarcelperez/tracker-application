@@ -29,19 +29,20 @@ namespace TrackerApplication.WinForm
 
         private void TrackerDataReceived(object sender, TrackerDataReceivedEvenArgs e)
         {
+            SafeSetDataGridView(e.Data);
+        }
+
+        private void SafeSetDataGridView(TrackerData[] data)
+        {
             if (dataGridView.InvokeRequired)
             {
-                dataGridView.Invoke(new Action<TrackerData[]>(SetDataGridView), new object[] { e.Data });
+                var action = new Action(() => { dataGridView.DataSource = data; });
+                dataGridView.Invoke(action);
             }
             else
             {
-                SetDataGridView(e.Data);
+                dataGridView.DataSource = data;
             }
-        }
-
-        private void SetDataGridView(TrackerData[] data)
-        {
-            dataGridView.DataSource = data;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
