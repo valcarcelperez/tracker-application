@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using TrackerApplication.Contracts;
+using TrackerApplication.Contracts.Converters;
 using TrackerApplication.Contracts.Models;
 
 namespace TrackerApplication.Client
@@ -16,8 +18,12 @@ namespace TrackerApplication.Client
 
     public class TrackerClientConfig
     {
+        [JsonConverter(typeof(TimeSpanConverter))]
         public TimeSpan RequestInterval { get; set; }
+        
         public string BaseAddress { get; set; }
+
+        [JsonConverter(typeof(TimeSpanConverter))]
         public TimeSpan Timeout { get; set; }
     }
 

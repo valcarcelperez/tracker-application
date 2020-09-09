@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Text.Json;
 using System.Windows.Forms;
 using TrackerApplication.Client;
 using TrackerApplication.Contracts.Models;
@@ -15,16 +16,21 @@ namespace TrackerApplication.WinForm
         {
             InitializeComponent();
 
-            var trackerClientConfig = new TrackerClientConfig
-            {
-                BaseAddress = "http://localhost:5000",
-                RequestInterval = TimeSpan.FromMilliseconds(5000),
-                Timeout = TimeSpan.FromSeconds(10)
-            };
+            var appConfig = AppConfig.Load();
 
             _textBoxTrackerClientLogger = new TextBoxTrackerClientLogger(textBoxLogs);
-            _trackerClient = new TrackerClient(_textBoxTrackerClientLogger, trackerClientConfig);
+            LogConfiguration(appConfig);
+
+            _trackerClient = new TrackerClient(_textBoxTrackerClientLogger, appConfig.TrackerClientConfig);
             _trackerClient.TrackerDataReceived += TrackerDataReceived;
+        }
+
+        private void LogConfiguration(AppConfig appConfig)
+        {
+            var jsonSerializerOptions = new JsonSerializerOptions { WriteIndented = true };
+            var json = JsonSerializer.Serialize(appConfig, jsonSerializerOptions);
+
+            _textBoxTrackerClientLogger.Info($"Configuration:{Environment.NewLine}{json}");
         }
 
         private void TrackerDataReceived(object sender, TrackerDataReceivedEvenArgs e)

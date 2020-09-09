@@ -14,7 +14,19 @@ namespace TrackerApplication.WinForm
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            MainForm mainForm;
+            try
+            {
+                mainForm = new MainForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return;
+            }
+
+            Application.Run(mainForm);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace TrackerApplication.Contracts.Models
+namespace TrackerApplication.Contracts.Converters
 {
     public class MMDashDDDashYYYYDateTimeConverter : JsonConverter<DateTime>
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json.Serialization;
+using TrackerApplication.Contracts.Converters;
 
 namespace TrackerApplication.Contracts.Models.TrackerDataFormat3
 {
