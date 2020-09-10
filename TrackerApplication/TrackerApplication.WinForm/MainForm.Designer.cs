@@ -121,6 +121,7 @@
             this.Controls.Add(this.tabControl);
             this.Name = "MainForm";
             this.Text = "Tracker Dashboard";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl.ResumeLayout(false);

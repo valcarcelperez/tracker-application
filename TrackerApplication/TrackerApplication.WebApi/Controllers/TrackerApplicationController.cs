@@ -31,7 +31,7 @@ namespace TrackerApplication.WebApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError($"Exception: {ex}");
-                return StatusCode((int)HttpStatusCode.OK, ServiceResponse.CreateFailed("Internal Server Error"));
+                return StatusCode((int)HttpStatusCode.InternalServerError, ServiceResponse.CreateFailed("Internal Server Error"));
             }
         }
     }
